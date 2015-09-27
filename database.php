@@ -6,7 +6,7 @@ $db_user = 'root';
 $db_password = '';
 
 // Create mysqli object
-$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+;$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
 
 // Error Handler
 if($mysqli->connect_error){

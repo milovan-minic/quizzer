@@ -1,6 +1,5 @@
-<?php include 'database.php'; ?>
-
-<?php
+<?php include 'database.php';
+session_start();
 
     // Set question number
     $question_number = (int) $_GET['n'];
@@ -15,6 +14,17 @@
     $result = $mysqli->query($query) or die($mysqli->error.__LINE__);
 
     $question = $result->fetch_assoc();
+
+    /*
+    * Get total number of questions
+    */
+    $query = "SELECT * FROM questions";
+
+    // Get results
+    $results = $mysqli->query($query) or die($mysqli->error . __LINE__);
+
+    // Get total number of questions
+    $total_questions = $results->num_rows;
 
 
     /*
@@ -45,7 +55,7 @@
 
 <main>
     <div class="container">
-        <div class="current">Question 1 of 5</div>
+        <div class="current">Question <?php echo $question_number; ?> of <?php echo $total_questions; ?></div>
         <p class="question">
             <?php echo $question['text']; ?>
         </p>
@@ -56,7 +66,10 @@
                         ?></li>
                 <?php endwhile; ?>
             </ul>
-            <input type="button" value="Submit" />
+            <input type="submit" value="Submit" />
+
+            <input type="hidden" name="number" value="<?php echo $question_number ?>" />
+
         </form>
     </div>
 </main>

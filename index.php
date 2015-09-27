@@ -1,5 +1,5 @@
-<?php include 'database.php' ?>
-<?php
+<?php include 'database.php';
+
     /*
      * Get total number of questions
      */
